@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume – Liu GuangXuan</title>
+    <meta name="description" content="Resume of Liu GuangXuan – Immersive Media student at Ngee Ann Polytechnic. Skills in game development, 3D design, UX/UI, and web development.">
+    <link rel="icon" href="imgs/icon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Normalize.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── Resume Page Overrides ── */
+        body {
+            background: #0d0d1a;
+            color: #e8e8f0;
+            font-family: 'Inter', 'Ubuntu', sans-serif;
+        }
+
+        /* Fix header for non-parallax pages */
+        header {
+            position: fixed;
+            background: rgba(13,13,26,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(126,113,243,0.2);
+        }
+
+        #nav {
+            background: rgba(126,113,243,0.12);
+        }
+
+        #nav li a {
+            color: #b0aaff;
+        }
+
+        .slide1 { background-color: rgba(126,113,243,0.5); }
+
+        /* ── Resume Hero ── */
+        .resume-hero {
+            padding: 130px 2rem 3rem;
+            text-align: center;
+            background: linear-gradient(160deg, #0d0d1a 0%, #12103a 60%, #0d0d1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(ellipse, rgba(126,113,243,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .resume-hero .avatar {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #7e71f3;
+            box-shadow: 0 0 30px rgba(126,113,243,0.5);
+            margin-bottom: 1.2rem;
+        }
+
+        .resume-hero h1 {
+            position: static;
+            font-family: 'DynaPuff', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            background: linear-gradient(135deg, #7e71f3 0%, #8bb5f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 0.3rem;
+            width: auto;
+            bottom: auto;
+        }
+
+        .resume-hero .tagline {
+            font-size: 1.05rem;
+            color: rgba(200,200,220,0.7);
+            margin-bottom: 1.4rem;
+            font-weight: 300;
+        }
+
+        .contact-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-chips a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            background: rgba(126,113,243,0.12);
+            border: 1px solid rgba(126,113,243,0.3);
+            color: #b0aaff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.25s;
+        }
+
+        .contact-chips a:hover {
+            background: rgba(126,113,243,0.28);
+            border-color: #7e71f3;
+            transform: translateY(-2px);
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.6rem;
+            background: linear-gradient(135deg, #7e71f3, #8bb5f3);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .print-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        /* ── Resume Grid ── */
+        .resume-body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .resume-body { grid-template-columns: 1fr; }
+        }
+
+        /* ── Card ── */
+        .resume-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(126,113,243,0.18);
+            border-radius: 16px;
+            padding: 1.6rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .resume-card:hover {
+            border-color: rgba(126,113,243,0.45);
+            box-shadow: 0 4px 30px rgba(126,113,243,0.1);
+        }
+
+        .resume-card h2 {
+            font-family: 'DynaPuff', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8bb5f3;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0 0 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-card h2 i {
+            font-size: 0.9rem;
+            color: #7e71f3;
+        }
+
+        /* ── Education ── */
+        .edu-item {
+            margin-bottom: 1.1rem;
+        }
+
+        .edu-item:last-child { margin-bottom: 0; }
+
+        .edu-item .school {
+            font-weight: 600;
+            color: #e0deff;
+            font-size: 0.95rem;
+        }
+
+        .edu-item .degree {
+            font-size: 0.85rem;
+            color: #8bb5f3;
+            margin: 0.15rem 0;
+        }
+
+        .edu-item .year {
+            font-size: 0.78rem;
+            color: rgba(200,200,220,0.5);
+        }
+
+        /* ── Skills Bars ── */
+        .skill-group { margin-bottom: 1.2rem; }
+
+        .skill-group:last-child { margin-bottom: 0; }
+
+        .skill-group-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #7e71f3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .skill-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .skill-tag.purple {
+            background: rgba(126,113,243,0.15);
+            border-color: rgba(126,113,243,0.4);
+            color: #c5bfff;
+        }
+
+        .skill-tag.blue {
+            background: rgba(139,181,243,0.12);
+            border-color: rgba(139,181,243,0.35);
+            color: #a8caff;
+        }
+
+        .skill-tag.green {
+            background: rgba(100,220,160,0.1);
+            border-color: rgba(100,220,160,0.3);
+            color: #90e8c0;
+        }
+
+        /* ── Experience / Timeline ── */
+        .timeline { position: relative; padding-left: 1.4rem; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 6px; bottom: 6px;
+            width: 2px;
+            background: linear-gradient(180deg, #7e71f3, #8bb5f3);
+            border-radius: 2px;
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 1.4rem;
+        }
+
+        .tl-item:last-child { margin-bottom: 0; }
+
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -1.7rem; top: 5px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #7e71f3;
+            border: 2px solid #0d0d1a;
+            box-shadow: 0 0 8px rgba(126,113,243,0.6);
+        }
+
+        .tl-item .tl-title {
+            font-weight: 600;
+            color: #e0deff;
+            font-size: 0.95rem;
+        }
+
+        .tl-item .tl-org {
+            font-size: 0.83rem;
+            color: #8bb5f3;
+            margin: 0.1rem 0;
+        }
+
+        .tl-item .tl-date {
+            font-size: 0.76rem;
+            color: rgba(200,200,220,0.45);
+            margin-bottom: 0.35rem;
+        }
+
+        .tl-item .tl-desc {
+            font-size: 0.85rem;
+            color: rgba(220,220,240,0.7);
+            line-height: 1.55;
+        }
+
+        /* ── Projects ── */
+        .project-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(126,113,243,0.1);
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .project-item .proj-title {
+            font-weight: 600;
+            color: #e0deff;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-item .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .proj-tag {
+            font-size: 0.72rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 50px;
+            background: rgba(126,113,243,0.15);
+            border: 1px solid rgba(126,113,243,0.3);
+            color: #b0aaff;
+        }
+
+        .project-item .proj-desc {
+            font-size: 0.84rem;
+            color: rgba(210,210,230,0.7);
+            line-height: 1.5;
+        }
+
+        /* ── Interests ── */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+        }
+
+        .interest-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(210,210,230,0.8);
+        }
+
+        .interest-item i {
+            width: 22px;
+            text-align: center;
+            color: #7e71f3;
+        }
+
+        /* ── Languages ── */
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.65rem;
+            font-size: 0.87rem;
+        }
+
+        .lang-item:last-child { margin-bottom: 0; }
+
+        .lang-name { color: #e0deff; font-weight: 500; }
+
+        .lang-level {
+            font-size: 0.75rem;
+            color: #8bb5f3;
+            background: rgba(139,181,243,0.12);
+            border: 1px solid rgba(139,181,243,0.25);
+            padding: 0.15rem 0.55rem;
+            border-radius: 50px;
+        }
+
+        /* ── Print ── */
+        @media print {
+            body { background: #fff; color: #000; }
+            header, .print-btn, footer { display: none; }
+            .resume-hero { padding-top: 1rem; background: #fff; }
+            .resume-hero h1 { -webkit-text-fill-color: #333; }
+            .resume-card { border: 1px solid #ddd; background: #fff; }
+            .resume-body { grid-template-columns: 1fr 2fr; }
+            .contact-chips a { color: #555; border-color: #ccc; background: #f5f5f5; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="nav">
+                <li class="slide1"></li>
+                <li class="slide2"></li>
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="about.html" data-page="about">About Me</a></li>
+                <li><a href="projects.html" data-page="projects">Projects</a></li>
+                <li><a href="blog.html" data-page="blog">Blog</a></li>
+                <li><a href="resume.html" data-page="resume">Resume</a></li>
+                <li><a href="contact.html" data-page="contact">Contact</a></li>
+            </ul>
+            <img src="imgs/logo.png" alt="logo" class="logo">
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="resume-hero">
+        <img src="imgs/Me_n.jpg" alt="Liu GuangXuan" class="avatar">
+        <h1>Liu GuangXuan</h1>
+        <p class="tagline">Immersive Media Student · Game Developer · UX/UI Designer · Web Developer</p>
+        <div class="contact-chips">
+            <a href="https://github.com/Jinghua2128" target="_blank"><i class="fab fa-github"></i> Jinghua2128</a>
+            <a href="https://www.linkedin.com/in/liuguangxuan/" target="_blank"><i class="fab fa-linkedin"></i> liuguangxuan</a>
+            <a href="https://t.me/longmai2128" target="_blank"><i class="fab fa-telegram"></i> longmai2128</a>
+            <a href="https://jinghua2128.github.io/NP-FED/" target="_blank"><i class="fas fa-globe"></i> Portfolio</a>
+        </div>
+        <a class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</a>
+    </section>
+
+    <!-- Body Grid -->
+    <div class="resume-body">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+
+            <!-- Education -->
+            <div class="resume-card">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+
+                <div class="edu-item">
+                    <div class="school">Ngee Ann Polytechnic</div>
+                    <div class="degree">Diploma in Immersive Media</div>
+                    <div class="year">2024 – Present</div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="school">Chua Chu Kang Secondary School</div>
+                    <div class="degree">GCE O-Levels</div>
+                    <div class="year">2019 – 2023</div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="school">West Spring Primary School</div>
+                    <div class="degree">PSLE</div>
+                    <div class="year">2013 – 2018</div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="resume-card">
+                <h2><i class="fas fa-language"></i> Languages</h2>
+                <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
+                <div class="lang-item"><span class="lang-name">Mandarin Chinese</span><span class="lang-level">Native</span></div>
+                <div class="lang-item"><span class="lang-name">Japanese</span><span class="lang-level">Learning</span></div>
+            </div>
+
+            <!-- Interests -->
+            <div class="resume-card">
+                <h2><i class="fas fa-star"></i> Interests</h2>
+                <div class="interests-grid">
+                    <div class="interest-item"><i class="fas fa-gamepad"></i> Gaming</div>
+                    <div class="interest-item"><i class="fas fa-paint-brush"></i> Design</div>
+                    <div class="interest-item"><i class="fas fa-chess"></i> Board Games</div>
+                    <div class="interest-item"><i class="fas fa-film"></i> Storytelling</div>
+                    <div class="interest-item"><i class="fas fa-cube"></i> 3D Modelling</div>
+                    <div class="interest-item"><i class="fas fa-robot"></i> Robotics</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+
+            <!-- Skills -->
+            <div class="resume-card">
+                <h2><i class="fas fa-layer-group"></i> Skills</h2>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Programming &amp; Web</div>
+                    <div class="skill-tag-list">
+                        <span class="skill-tag purple">Python</span>
+                        <span class="skill-tag purple">HTML5</span>
+                        <span class="skill-tag purple">CSS3</span>
+                        <span class="skill-tag purple">JavaScript</span>
+                        <span class="skill-tag purple">jQuery</span>
+                        <span class="skill-tag purple">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Design &amp; 3D</div>
+                    <div class="skill-tag-list">
+                        <span class="skill-tag blue">Figma</span>
+                        <span class="skill-tag blue">UX/UI Design</span>
+                        <span class="skill-tag blue">Wireframing</span>
+                        <span class="skill-tag blue">Substance Painter</span>
+                        <span class="skill-tag blue">3D Modelling</span>
+                        <span class="skill-tag blue">Procedural Texturing</span>
+                        <span class="skill-tag blue">Graphic Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Game Development</div>
+                    <div class="skill-tag-list">
+                        <span class="skill-tag green">Game Design</span>
+                        <span class="skill-tag green">Gameplay Loop Analysis</span>
+                        <span class="skill-tag green">Mechanics Design</span>
+                        <span class="skill-tag green">Resource Management</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Soft Skills</div>
+                    <div class="skill-tag-list">
+                        <span class="skill-tag purple">Leadership</span>
+                        <span class="skill-tag purple">Event Coordination</span>
+                        <span class="skill-tag purple">Teamwork</span>
+                        <span class="skill-tag purple">Creative Problem Solving</span>
+                        <span class="skill-tag purple">Cross-Cultural Communication</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="resume-card">
+                <h2><i class="fas fa-briefcase"></i> Experience &amp; Activities</h2>
+                <div class="timeline">
+
+                    <div class="tl-item">
+                        <div class="tl-title">Head of Planning &amp; Video Committee</div>
+                        <div class="tl-org">Overseas Immersion Programme (OIP) – Shenzhen, China</div>
+                        <div class="tl-date">05 Sep 2024 – 14 Sep 2024</div>
+                        <div class="tl-desc">Led the planning crew and video committee for a 10-day overseas programme at a partner university in Shenzhen. Coordinated schedules, produced video documentation, and managed cross-cultural activities for the cohort.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-title">China Cultural Booth Host</div>
+                        <div class="tl-org">Go Global Festival (GGF) – Ngee Ann Polytechnic</div>
+                        <div class="tl-date">08 Nov 2024</div>
+                        <div class="tl-desc">Represented and hosted the China cultural booth, introducing visitors to Black Myth: Wukong, traditional Chinese snacks, and Hanfu. Created an interactive and immersive cultural experience for students across nationalities.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-title">Robotics Project – Tobi Rowbow</div>
+                        <div class="tl-org">Personal / Academic Project</div>
+                        <div class="tl-date">2024</div>
+                        <div class="tl-desc">Designed and built "Tobi Rowbow," a robot capable of detecting people and autonomously cleaning tables — combining hardware design with practical innovation.</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="resume-card">
+                <h2><i class="fas fa-code"></i> Projects</h2>
+
+                <div class="project-item">
+                    <div class="proj-title">Sundrop Farm</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Python</span>
+                        <span class="proj-tag">Game Development</span>
+                        <span class="proj-tag">CLI</span>
+                    </div>
+                    <div class="proj-desc">A farming simulation game combining strategy and creativity. Developed in Python with a user-friendly interface and dynamic gameplay mechanics including resource management and seasonal cycles.</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-title">Money Pit Mayhem</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Game Design</span>
+                        <span class="proj-tag">Mechanics</span>
+                        <span class="proj-tag">Board Game</span>
+                    </div>
+                    <div class="proj-desc">A strategy board game built around event-driven mechanics that challenge players' resource management skills. Designed complete ruleset, card types, and turn structure.</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-title">YouTube Shorts UX/UI Revamp</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Figma</span>
+                        <span class="proj-tag">UX Research</span>
+                        <span class="proj-tag">Wireframing</span>
+                        <span class="proj-tag">Prototyping</span>
+                    </div>
+                    <div class="proj-desc">Redesigned the YouTube Shorts experience by applying UX/UI principles for better engagement and navigation. Produced wireframes, high-fidelity mockups, and a clickable prototype in Figma.</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-title">Personal Portfolio Website</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">HTML5</span>
+                        <span class="proj-tag">CSS3</span>
+                        <span class="proj-tag">JavaScript</span>
+                        <span class="proj-tag">GitHub Pages</span>
+                    </div>
+                    <div class="proj-desc">Designed and developed this full portfolio site from scratch — including interactive blog slider, animated navigation, parallax hero, comments system, and contact form. Deployed to GitHub Pages.</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-title">3D Chess Pieces – Procedural Texturing</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Substance Painter</span>
+                        <span class="proj-tag">3D Modelling</span>
+                        <span class="proj-tag">Procedural Texturing</span>
+                    </div>
+                    <div class="proj-desc">Created and textured a complete set of 3D chess pieces using procedural texturing techniques in Substance Painter, focusing on realistic material rendering and detail.</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Liu GuangXuan. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="blog-slider.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
